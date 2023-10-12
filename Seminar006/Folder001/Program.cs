@@ -1,6 +1,6 @@
 ﻿// Разворот массива
 int[] array = { 1, 2, 3, 4 };
-// 1 метод
+// 1 метод - изменение текущего массива
 void ReverseArray1(int[] array){
     for(int i = 0; i < array.Length / 2; i++){
     int key = array[i];
@@ -9,7 +9,7 @@ void ReverseArray1(int[] array){
     }
 }
 
-// 2 метод
+// 2 метод - новый массив
 int[] ReverseArray2(int[] array){
     int[] result = new int[array.Length];
     for(int i = 0; i < array.Length; i++){

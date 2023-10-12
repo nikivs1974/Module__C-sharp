@@ -20,7 +20,9 @@ foreach (int el in array)
     positiveSum += el > 0 ? el : 0;
     negativeSum += el < 0 ? el : 0;
 }
-Console.WriteLine($"Сумма положительных чисел = {positiveSum}, сумма отрицательных чисел = {negativeSum}\n");
+Console.WriteLine(
+    $"Сумма положительных чисел = {positiveSum}, сумма отрицательных чисел = {negativeSum}\n"
+);
 
 // Замена положительных на отрицательные и наоборот
 for (int i = 0; i < array.Length; i++)
@@ -47,16 +49,17 @@ string GetAnswer(int number)
             count++;
         }
     }
-    str = count > 0 ? $"Число {number} есть в массиве [{String.Join(", ", arr)}]"
-    : $"Число {number} отсутствует в массиве [{String.Join(", ", arr)}]";
+    str =
+        count > 0
+            ? $"Число {number} есть в массиве [{String.Join(", ", arr)}]"
+            : $"Число {number} отсутствует в массиве [{String.Join(", ", arr)}]";
     Console.WriteLine(str);
     return str;
 }
 GetAnswer(number);
 
-
 // Вариант с семинара
-// НЕ РАБОТАЕТ! 
+// НЕ РАБОТАЕТ!
 // ЭТОТ СПОСОБ ПЕРЕПИСЫВАЕТ СТРОКУ
 
 int[] arr1 = GetArray(6, 0, 9);
@@ -88,12 +91,13 @@ int GetSum(int[] arr2)
         {
             count++;
         }
-
     }
     return count;
 }
 Console.WriteLine($"\n[{String.Join(", ", arr2)}]");
-Console.WriteLine($"Количество элементов, значения которых лежат в отрезке от 10 до 99 = {GetSum(arr2)}");
+Console.WriteLine(
+    $"Количество элементов, значения которых лежат в отрезке от 10 до 99 = {GetSum(arr2)}"
+);
 
 // Мой вариант
 // Найти произведение пар чисел в массиве. (Первый - последний, второй - предпоследний).
@@ -126,3 +130,33 @@ int[] GetMyltiplay(int[] col)
 }
 int[] resultArr = GetMyltiplay(col);
 Console.WriteLine($"[{String.Join("/", resultArr)}]");
+
+// Произведение пар чисел в одномерном массиве
+// 1 2 3 4 5 -> 5 8 3
+// 6 7 3 6 -> 36 21
+int[] GetArr(int[] arr)
+{
+    int len = arr.Length - 1;
+    int size = arr.Length / 2;
+    int[] array = new int[size];
+    if (arr.Length % 2 != 0)
+    {
+        size++;
+        array = new int[size];
+        array[size - 1] = arr[arr.Length / 2];
+    }
+    for (int i = 0; i < arr.Length / 2; i++)
+    {
+        array[i] = arr[i] * arr[len];
+        len -= 1;
+    }
+    return array;
+}
+
+int[] array = { 1, 2, 3, 4, 5 };
+int[] arr = GetArr(array);
+Console.WriteLine($"{String.Join("\t", arr)}");
+
+int[] array2 = { 6, 7, 3, 6 };
+int[] arr2 = GetArr(array2);
+Console.WriteLine($"{String.Join("\t", arr2)}");
